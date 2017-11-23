@@ -10,7 +10,7 @@ public class AutoTest {
 
 	@Test
 	public void test() {
-		System.setProperty("webdriver.chrome.driver", "D:\\Selenium\\chromedriver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "D:\\\\Selenium\\\\workspace\\\\Drivers\\\\chromedriver.exe");
 		WebDriver chromeDriver = new ChromeDriver();
 		chromeDriver.get("https://www.baidu.com");
 
