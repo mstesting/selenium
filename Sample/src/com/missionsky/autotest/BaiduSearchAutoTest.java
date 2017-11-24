@@ -8,27 +8,33 @@ import org.testng.annotations.Test;
 
 public class BaiduSearchAutoTest {
 
-	@Test
-	public void test() {
-		System.setProperty("webdriver.chrome.driver", "D:\\Selenium\\workspace\\Drivers\\chromedriver.exe");
-		WebDriver chromeDriver = new ChromeDriver();
-		chromeDriver.get("https://www.baidu.com");
+	private WebDriver webDriver;
 
-		WebElement keywordElement = findElementById(chromeDriver, "kw");
-		keywordElement.sendKeys("Web Driver");
-
-		WebElement submitElement = findElementById(chromeDriver, "su");
-		submitElement.click();
-
-		close(chromeDriver);
+	private void openBrowser() {
+		System.setProperty("webdriver.chrome.driver", "..\\Drivers\\chromedriver.exe");
+		webDriver = new ChromeDriver();
+		webDriver.get("https://www.baidu.com");
 	}
 
-	private WebElement findElementById(WebDriver webDriver, String id) {
+	@Test(priority = 1)
+	public void search() {
+		openBrowser();
+
+		WebElement keywordElement = findElementById("kw");
+		keywordElement.sendKeys("Selenium WebDriver");
+
+		WebElement submitElement = findElementById("su");
+		submitElement.click();
+
+		close();
+	}
+
+	private WebElement findElementById(String id) {
 		By by = By.id(id);
 		return webDriver.findElement(by);
 	}
 
-	private void close(WebDriver chromeDriver) {
+	private void close() {
 
 		try {
 			Thread.sleep(6000);
@@ -36,7 +42,7 @@ public class BaiduSearchAutoTest {
 			e.printStackTrace();
 		}
 
-		chromeDriver.close();
+		webDriver.close();
 	}
 
 }
